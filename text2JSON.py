@@ -11,8 +11,6 @@
 import sys
 import os
 import json
-import re
-import ntpath
 
 def generate_outfilename(infilename):
     """ Output file gets the same name as input file except with the extension
