@@ -48,18 +48,22 @@ def cat_files(path_list):
         with open(path) as json_data:
             d = json.load(json_data)
             curr_sorted = d["sorted"]
-            #print(curr_sorted)
-            out["sorted"].extend(curr_sorted)
+        #print(curr_sorted)
+        out["sorted"].extend(curr_sorted)
     return out
 
 
 def main():
-   dir = sys.argv[1]
-   file_list = get_file_list(dir)
-   path_list = build_path_list(dir, file_list)
-   #print str(path_list)
-   out = cat_files(path_list)
-   print(json.dumps(out))
+    dir = sys.argv[1]
+    file_list = get_file_list(dir)
+    path_list = build_path_list(dir, file_list)
+    #print str(path_list)
+    jsonOut = cat_files(path_list)
+    #print(json.dumps(jsonOut))
+    outfilepath = dir + "/cattedJSON.json"
+    with open(outfilepath, 'w') as outfile:
+        json.dump(jsonOut, outfile)
+    print "done."
 
 
 if __name__ == "__main__":
