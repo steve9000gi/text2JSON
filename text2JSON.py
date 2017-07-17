@@ -52,7 +52,7 @@ def get_list_from_file(infilename):
     """
     with open(infilename) as f:
         lst = f.readlines()
-    return [x.strip() for x in lst]
+    return [x.strip('\n') for x in lst]
 
 
 def convert_list_to_json_format(lst):
@@ -118,9 +118,10 @@ def convert_list_to_json_format(lst):
         sortedElt["textItems"] = []
         i += 1
         while len(lst[i]) != 0: # add textItems to the curr elt in sorted array
-           currItem = {"text": lst[i]}
-           sortedElt["textItems"].append(currItem)
-           i += 1
+            #/print "i: {}; key: {}; lst[{}]: '{}'".format(i, key, i, lst[i]) 
+            currItem = {"text": lst[i]}
+            sortedElt["textItems"].append(currItem)
+            i += 1
         json["sorted"].append(sortedElt)
         i += 1
     return json
